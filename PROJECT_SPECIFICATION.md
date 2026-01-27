@@ -10,3 +10,9 @@ User can Add short notes or a to-do list linked to specific dates.
 Dynamic calender formatting, for example weeks lining up on the ends of and beginning of months. <br>
 Ability to change background of application to user's preference. <br>
 Allow the application to take .ics files and properly format them. <br>
+
+
+### Chase's To-Do:
+Hide sensitive event details: Let users keep events visible on the calendar (time is blocked) but hide or blur private details
+Color coding and tag options: Make the calendar easier to read at a glance and support filtering.
+Clock timer for Events: Provide a sense of urgency and time awareness around events.
