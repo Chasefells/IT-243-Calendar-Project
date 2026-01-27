@@ -13,6 +13,6 @@ Allow the application to take .ics files and properly format them. <br>
 
 
 ### Chase's To-Do:
-Hide sensitive event details: Let users keep events visible on the calendar (time is blocked) but hide or blur private details
-Color coding and tag options: Make the calendar easier to read at a glance and support filtering.
-Clock timer for Events: Provide a sense of urgency and time awareness around events.
+Hide sensitive event details: Let users keep events visible on the calendar (time is blocked) but hide or blur private details <br>
+Color coding and tag options: Make the calendar easier to read at a glance and support filtering. <br>
+Clock timer for Events: Provide a sense of urgency and time awareness around events. <br>
