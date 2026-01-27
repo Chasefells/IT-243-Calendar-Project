@@ -1,3 +1,4 @@
+# Calendar Features 
 ### Danish's To-Do:
 Event Creation: Users can add events with a title, date and time anytime. <br>
 Shared Calendar Option: Share selected events or an entire calendar with friends, family, or group members. <br>
