@@ -19,7 +19,10 @@ public class App {
      }
      public static void asimsMethod() {
         System.out.println("this is a asims method");
-     }
+
+        AsimaFeatures.runAsimaDemo();
+    }
+
      public static void leifsMethod() {
         System.out.println("this is a leifs method");
         
