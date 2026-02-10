@@ -4,33 +4,84 @@
 package org.example;
 
 public class App {
+
     public String getGreeting() {
         return "Hello World!";
     }
 
+    // Chase's method – color-coded events & tag filtering
     public static void chasesMethod() {
-        System.out.println("this is a chases method");
+        System.out.println("\n=== Chase's Method: Event Color Coding & Tag Filtering ===");
+
+        // Inner class to represent an event
+        class Event {
+            String name;
+            String tag;
+            String color;
+
+            Event(String name, String tag, String color) {
+                this.name = name;
+                this.tag = tag;
+                this.color = color;
+            }
+
+            void display() {
+                // Reset color after each line
+                System.out.println(color + name + " [" + tag + "]" + "\u001B[0m");
+            }
+        }
+
+        // Create a list of sample events
+        Event[] events = {
+            new Event("Math Homework", "Homework", "\u001B[34m"),    // Blue
+            new Event("Science Homework", "Homework", "\u001B[34m"),  // Blue
+            new Event("Basketball Practice", "Sports", "\u001B[32m"), // Green
+            new Event("Dentist Appointment", "Health", "\u001B[31m")  // Red
+        };
+
+        // Choose which tag to filter
+        String filterTag = "Homework";
+        System.out.println("Filtering by tag: " + filterTag + "\n");
+
+        // Show only events whose tag matches
+        for (Event e : events) {
+            if (e.tag.equalsIgnoreCase(filterTag)) {
+                e.display();
+            }
+        }
+
+        System.out.println("=== End of Chase's Method ===\n");
     }
-     public static void danishsMethod() {
+
+    // Danish's method
+    public static void danishsMethod() {
         System.out.println("this is a danishs method");
-     }
-     public static void brycesMethod() {
-        System.out.println("this is a bryces method");
-     }
-     public static void asimsMethod() {
-        System.out.println("this is a asims method");
-     }
-     public static void leifsMethod() {
-        System.out.println("this is a leifs method");
-        
     }
+
+    // Bryce's method
+    public static void brycesMethod() {
+        System.out.println("this is a bryces method");
+    }
+
+    // Asim's method
+    public static void asimsMethod() {
+        System.out.println("this is an asims method");
+    }
+
+    // Leif's method
+    public static void leifsMethod() {
+        System.out.println("this is a leifs method");
+    }
+
+    // Main method
     public static void main(String[] args) {
-      //  System.out.println(new App().getGreeting());
-      System.out.println("this is a main method");
-      chasesMethod();
-      danishsMethod();
-      brycesMethod();
-      asimsMethod();
-      leifsMethod();
+        System.out.println("this is the main method");
+
+        // Call each team member's method
+        chasesMethod();
+        danishsMethod();
+        brycesMethod();
+        asimsMethod();
+        leifsMethod();
     }
 }
