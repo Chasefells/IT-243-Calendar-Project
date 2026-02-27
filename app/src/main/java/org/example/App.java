@@ -3,51 +3,61 @@
  */
 package org.example;
 
+import java.util.*;
+import java.util.stream.Collectors;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 public class App {
 
     public String getGreeting() {
-        return "Hello World!";
+        return "\n\n=========================\nMy new, better, greeting!\n=========================\n\n";
     }
 
-    // Chase's method – color-coded events & tag filtering
+    //  Event class now public & static (testable)
+    public static class Event {
+        public String name;
+        public String tag;
+        public String color;
+
+        public Event(String name, String tag, String color) {
+            this.name = name;
+            this.tag = tag;
+            this.color = color;
+        }
+
+        public void display() {
+            System.out.println(color + name + " [" + tag + "]" + "\u001B[0m");
+        }
+    }
+
+    // Helper method for testing (pure logic, no printing)
+    public static List<Event> filterEventsByTag(List<Event> events, String filterTag) {
+        if (filterTag == null || filterTag.isEmpty()) return List.of();
+        return events.stream()
+                .filter(e -> e.tag.equalsIgnoreCase(filterTag))
+                .collect(Collectors.toList());
+    }
+
+    // Chase's method – now uses helper method
     public static void chasesMethod() {
         System.out.println("\n=== Chase's Method: Event Color Coding & Tag Filtering ===");
 
-        // Inner class to represent an event
-        class Event {
-            String name;
-            String tag;
-            String color;
-
-            Event(String name, String tag, String color) {
-                this.name = name;
-                this.tag = tag;
-                this.color = color;
-            }
-
-            void display() {
-                // Reset color after each line
-                System.out.println(color + name + " [" + tag + "]" + "\u001B[0m");
-            }
-        }
-
-        // Create a list of sample events
-        Event[] events = {
+        List<Event> events = List.of(
             new Event("Math Homework", "Homework", "\u001B[34m"),    // Blue
             new Event("Science Homework", "Homework", "\u001B[34m"),  // Blue
             new Event("Basketball Practice", "Sports", "\u001B[32m"), // Green
             new Event("Dentist Appointment", "Health", "\u001B[31m")  // Red
-        };
+        );
 
-        // Choose which tag to filter
         String filterTag = "Homework";
         System.out.println("Filtering by tag: " + filterTag + "\n");
 
-        // Show only events whose tag matches
-        for (Event e : events) {
-            if (e.tag.equalsIgnoreCase(filterTag)) {
-                e.display();
-            }
+        // ✅ Uses testable helper method
+        List<Event> filtered = filterEventsByTag(events, filterTag);
+        for (Event e : filtered) {
+            e.display();
         }
 
         System.out.println("=== End of Chase's Method ===\n");
