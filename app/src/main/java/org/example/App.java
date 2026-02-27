@@ -5,9 +5,6 @@ package org.example;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class App {
 
@@ -15,7 +12,7 @@ public class App {
         return "\n\n=========================\nMy new, better, greeting!\n=========================\n\n";
     }
 
-    //  Event class now public & static (testable)
+    // Event class - now public & static (testable)
     public static class Event {
         public String name;
         public String tag;
@@ -45,16 +42,15 @@ public class App {
         System.out.println("\n=== Chase's Method: Event Color Coding & Tag Filtering ===");
 
         List<Event> events = List.of(
-            new Event("Math Homework", "Homework", "\u001B[34m"),    // Blue
-            new Event("Science Homework", "Homework", "\u001B[34m"),  // Blue
-            new Event("Basketball Practice", "Sports", "\u001B[32m"), // Green
-            new Event("Dentist Appointment", "Health", "\u001B[31m")  // Red
+            new Event("Math Homework", "Homework", "\u001B[34m"),
+            new Event("Science Homework", "Homework", "\u001B[34m"),
+            new Event("Basketball Practice", "Sports", "\u001B[32m"),
+            new Event("Dentist Appointment", "Health", "\u001B[31m")
         );
 
         String filterTag = "Homework";
         System.out.println("Filtering by tag: " + filterTag + "\n");
 
-        // ✅ Uses testable helper method
         List<Event> filtered = filterEventsByTag(events, filterTag);
         for (Event e : filtered) {
             e.display();
