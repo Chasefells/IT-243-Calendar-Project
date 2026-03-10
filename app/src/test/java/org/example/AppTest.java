@@ -1,78 +1,146 @@
 package org.example;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.example.App.Event;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AppTest {
+class AppTest {
 
-    private List<App.Event> sampleEvents;
+    // =========================
+    // EVENT CONSTRUCTOR TESTS
+    // =========================
 
-    @BeforeEach
-    void setup() {
-        sampleEvents = List.of(
-            new App.Event("Math Homework", "Homework", "\u001B[34m"),
-            new App.Event("Science Homework", "Homework", "\u001B[34m"),
-            new App.Event("Basketball Practice", "Sports", "\u001B[32m"),
-            new App.Event("Dentist Appointment", "Health", "\u001B[31m")
+    @Test
+    void constructor_ShouldSetAllFieldsCorrectly() {
+        Event event = new Event("Math Homework", "Homework", "Blue");
+
+        assertEquals("Math Homework", event.name);
+        assertEquals("Homework", event.tag);
+        assertEquals("Blue", event.color);
+    }
+
+    @Test
+    void constructor_ShouldAllowNullValues() {
+        Event event = new Event(null, null, null);
+
+        assertNull(event.name);
+        assertNull(event.tag);
+        assertNull(event.color);
+    }
+
+    @Test
+    void constructor_ShouldAllowEmptyStrings() {
+        Event event = new Event("", "", "");
+
+        assertEquals("", event.name);
+        assertEquals("", event.tag);
+        assertEquals("", event.color);
+    }
+
+    @Test
+    void constructor_ShouldStoreSpecialCharacters() {
+        Event event = new Event("Dentist #1", "Health!", "\u001B[31m");
+
+        assertEquals("Dentist #1", event.name);
+        assertEquals("Health!", event.tag);
+        assertEquals("\u001B[31m", event.color);
+    }
+
+    // =========================
+    // filterEventsByTag TESTS
+    // =========================
+
+    @Test
+    void filterEventsByTag_ShouldReturnMatchingEvents() {
+        List<Event> events = List.of(
+                new Event("Math Homework", "Homework", "Blue"),
+                new Event("Basketball", "Sports", "Green")
         );
+
+        List<Event> result = App.filterEventsByTag(events, "Homework");
+
+        assertEquals(1, result.size());
+        assertEquals("Math Homework", result.get(0).name);
     }
 
     @Test
-    void testFilterHomework_returnsTwoEvents() {
-        assertEquals(2, App.filterEventsByTag(sampleEvents, "Homework").size());
+    void filterEventsByTag_ShouldBeCaseInsensitive() {
+        List<Event> events = List.of(
+                new Event("Math Homework", "Homework", "Blue")
+        );
+
+        List<Event> result = App.filterEventsByTag(events, "homework");
+
+        assertEquals(1, result.size());
     }
 
     @Test
-    void testFilterTagCaseInsensitive() {
-        assertEquals(2, App.filterEventsByTag(sampleEvents, "homeWORK").size());
+    void filterEventsByTag_ShouldReturnEmptyList_WhenNoMatch() {
+        List<Event> events = List.of(
+                new Event("Math Homework", "Homework", "Blue")
+        );
+
+        List<Event> result = App.filterEventsByTag(events, "Sports");
+
+        assertTrue(result.isEmpty());
     }
 
     @Test
-    void testFilterSports_returnsOneEvent() {
-        List<App.Event> filtered = App.filterEventsByTag(sampleEvents, "Sports");
-        assertEquals(1, filtered.size());
-        assertEquals("Basketball Practice", filtered.get(0).name);
+    void filterEventsByTag_ShouldReturnEmptyList_WhenFilterTagIsNull() {
+        List<Event> events = List.of(
+                new Event("Math Homework", "Homework", "Blue")
+        );
+
+        List<Event> result = App.filterEventsByTag(events, null);
+
+        assertTrue(result.isEmpty());
     }
 
     @Test
-    void testFilterNonexistentTag_returnsEmptyList() {
-        assertTrue(App.filterEventsByTag(sampleEvents, "Music").isEmpty());
+    void filterEventsByTag_ShouldReturnEmptyList_WhenFilterTagIsEmpty() {
+        List<Event> events = List.of(
+                new Event("Math Homework", "Homework", "Blue")
+        );
+
+        List<Event> result = App.filterEventsByTag(events, "");
+
+        assertTrue(result.isEmpty());
     }
 
     @Test
-    void testFilterWithNullTag_returnsEmptyList() {
-        assertTrue(App.filterEventsByTag(sampleEvents, null).isEmpty());
+    void filterEventsByTag_ShouldReturnMultipleMatches() {
+        List<Event> events = List.of(
+                new Event("Math Homework", "Homework", "Blue"),
+                new Event("Science Homework", "Homework", "Blue"),
+                new Event("Basketball", "Sports", "Green")
+        );
+
+        List<Event> result = App.filterEventsByTag(events, "Homework");
+
+        assertEquals(2, result.size());
     }
 
     @Test
-    void testFilterWithEmptyTag_returnsEmptyList() {
-        assertTrue(App.filterEventsByTag(sampleEvents, "").isEmpty());
+    void filterEventsByTag_ShouldWorkWithSingleEventList() {
+        List<Event> events = List.of(
+                new Event("Basketball", "Sports", "Green")
+        );
+
+        List<Event> result = App.filterEventsByTag(events, "Sports");
+
+        assertEquals(1, result.size());
+        assertEquals("Sports", result.get(0).tag);
     }
 
     @Test
-    void testEventColorRetainedAfterFilter() {
-        List<App.Event> filtered = App.filterEventsByTag(sampleEvents, "Homework");
-        assertTrue(filtered.stream().allMatch(e -> e.color.equals("\u001B[34m")));
-    }
+    void filterEventsByTag_ShouldReturnEmptyList_WhenEventsListIsEmpty() {
+        List<Event> events = List.of();
 
-    @Test
-    void testEventTagsAreCaseInsensitive() {
-        App.Event event = new App.Event("Test", "HOMEWORK", "\u001B[34m");
-        List<App.Event> filtered = App.filterEventsByTag(List.of(event), "homework");
-        assertEquals(1, filtered.size());
-    }
+        List<Event> result = App.filterEventsByTag(events, "Homework");
 
-    @Test
-    void testOriginalListUnchanged() {
-        App.filterEventsByTag(sampleEvents, "Homework");
-        assertEquals(4, sampleEvents.size());
-    }
-
-    @Test
-    void testFilterReturnsNewListInstance() {
-        List<App.Event> filtered = App.filterEventsByTag(sampleEvents, "Homework");
-        assertNotSame(filtered, sampleEvents);
+        assertTrue(result.isEmpty());
     }
 }

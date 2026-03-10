@@ -62,21 +62,21 @@ public class App {
     // Danish's method
     public static void danishsMethod() {
         System.out.println("this is a danishs method");
-    }
-
-    // Bryce's method
-    public static void brycesMethod() {
+     }
+     public static void brycesMethod() {
         System.out.println("this is a bryces method");
-    }
-
-    // Asim's method
-    public static void asimsMethod() {
-        System.out.println("this is an asims method");
-    }
-
-    // Leif's method
-    public static void leifsMethod() {
+        javax.swing.SwingUtilities.invokeLater(() -> { 
+        System.out.println("About to open calendar window");
+        new CalendarWindow().start();
+        System.out.println("Calendar window should now be open");
+        });
+     }
+     public static void asimsMethod() {
+        System.out.println("this is a asims method");
+     }
+     public static void leifsMethod() {
         System.out.println("this is a leifs method");
+        
     }
 
     // Main method
