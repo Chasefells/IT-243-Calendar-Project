@@ -6,9 +6,19 @@ package org.example;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.logging.Logger;
+
 class AppTest {
-    @Test void appHasAGreeting() {
+
+    private static final Logger LOGGER = Logger.getLogger(AppTest.class.getName());
+
+    @Test
+    void appHasAGreeting() {
+        LOGGER.info("Starting appHasAGreeting test");
+
         App classUnderTest = new App();
         assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+
+        LOGGER.info("Finished appHasAGreeting test");
     }
 }
