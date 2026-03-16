@@ -42,46 +42,79 @@ public class CalendarWindow {
 
     private final String currentUserId = "user1";
 
+    // 8 events per month for March, April, May, June
     private final Event[] events = {
-            // MARCH 2026 (10 events + 3 privates)
+            // MARCH 2026 (8 events)
             new Event("Math Homework", "Homework", Color.BLUE,
-                    LocalDateTime.of(2026, 3, 16, 17, 0), Privacy.PUBLIC, "user1"),
+                    LocalDateTime.of(2026, 3, 2, 17, 0), Privacy.PUBLIC, "user1"),
             new Event("Therapy Session", "Health", Color.RED,
-                    LocalDateTime.of(2026, 3, 16, 14, 0), Privacy.PRIVATE, "user2"),
+                    LocalDateTime.of(2026, 3, 4, 14, 0), Privacy.PRIVATE, "user2"),
             new Event("Basketball Practice", "Sports", Color.GREEN,
-                    LocalDateTime.of(2026, 3, 18, 15, 30), Privacy.PUBLIC, "user3"),
+                    LocalDateTime.of(2026, 3, 6, 15, 30), Privacy.PUBLIC, "user3"),
             new Event("Gym Workout", "Health", new Color(255, 100, 100),
-                    LocalDateTime.of(2026, 3, 20, 7, 0), Privacy.PUBLIC, "user1"),
+                    LocalDateTime.of(2026, 3, 8, 7, 0), Privacy.PUBLIC, "user1"),
             new Event("Dentist Appointment", "Health", Color.RED,
-                    LocalDateTime.of(2026, 3, 22, 9, 30), Privacy.PRIVATE, "user3"),
+                    LocalDateTime.of(2026, 3, 10, 9, 30), Privacy.PRIVATE, "user3"),
             new Event("Science Project", "Homework", Color.BLUE,
-                    LocalDateTime.of(2026, 3, 23, 18, 0), Privacy.PUBLIC, "user1"),
+                    LocalDateTime.of(2026, 3, 12, 18, 0), Privacy.PUBLIC, "user1"),
             new Event("Soccer Game", "Sports", Color.GREEN,
-                    LocalDateTime.of(2026, 3, 25, 17, 0), Privacy.PUBLIC, "user3"),
-            new Event("Doctor Checkup", "Health", Color.RED,
-                    LocalDateTime.of(2026, 3, 27, 11, 0), Privacy.PRIVATE, "user1"),
+                    LocalDateTime.of(2026, 3, 14, 17, 0), Privacy.PUBLIC, "user3"),
             new Event("History Test Prep", "Homework", new Color(100, 150, 255),
-                    LocalDateTime.of(2026, 3, 29, 19, 0), Privacy.PUBLIC, "user1"),
-            new Event("Team Meeting", "Sports", Color.GREEN,
-                    LocalDateTime.of(2026, 3, 31, 16, 0), Privacy.PUBLIC, "user3"),
+                    LocalDateTime.of(2026, 3, 16, 19, 0), Privacy.PUBLIC, "user1"),
 
-            // APRIL, MAY, JUNE events...
+            // APRIL 2026 (8 events)
             new Event("English Essay", "Homework", Color.BLUE,
                     LocalDateTime.of(2026, 4, 2, 20, 0), Privacy.PUBLIC, "user1"),
             new Event("Counseling", "Health", Color.RED,
-                    LocalDateTime.of(2026, 4, 5, 9, 0), Privacy.PRIVATE, "user2"),
-            new Event("Finals Review", "Homework", Color.BLUE,
-                    LocalDateTime.of(2026, 5, 3, 20, 0), Privacy.PUBLIC, "user1"),
-            new Event("Physical Exam", "Health", Color.RED,
-                    LocalDateTime.of(2026, 5, 6, 10, 0), Privacy.PRIVATE, "user3"),
-            new Event("Summer Reading", "Homework", Color.BLUE,
-                    LocalDateTime.of(2026, 6, 4, 14, 0), Privacy.PUBLIC, "user1"),
-            new Event("Eye Exam", "Health", Color.RED,
-                    LocalDateTime.of(2026, 6, 8, 15, 0), Privacy.PRIVATE, "user2"),
+                    LocalDateTime.of(2026, 4, 3, 9, 0), Privacy.PRIVATE, "user2"),
+            new Event("Track Meet", "Sports", Color.GREEN,
+                    LocalDateTime.of(2026, 4, 5, 16, 0), Privacy.PUBLIC, "user3"),
+            new Event("Doctor Follow-up", "Health", Color.RED,
+                    LocalDateTime.of(2026, 4, 7, 11, 0), Privacy.PRIVATE, "user1"),
+            new Event("Group Project", "Homework", Color.BLUE,
+                    LocalDateTime.of(2026, 4, 9, 18, 30), Privacy.PUBLIC, "user1"),
+            new Event("Swim Practice", "Sports", Color.GREEN,
+                    LocalDateTime.of(2026, 4, 11, 15, 0), Privacy.PUBLIC, "user3"),
+            new Event("Lab Report", "Homework", Color.BLUE,
+                    LocalDateTime.of(2026, 4, 13, 19, 0), Privacy.PUBLIC, "user1"),
+            new Event("Eye Check", "Health", Color.RED,
+                    LocalDateTime.of(2026, 4, 15, 10, 0), Privacy.PRIVATE, "user2"),
 
-            // Test event a few minutes from now so you can see the timer
-            new Event("Test Event", "Homework", Color.MAGENTA,
-                    LocalDateTime.now().plusMinutes(5), Privacy.PUBLIC, "user1")
+            // MAY 2026 (8 events)
+            new Event("Finals Review", "Homework", Color.BLUE,
+                    LocalDateTime.of(2026, 5, 2, 20, 0), Privacy.PUBLIC, "user1"),
+            new Event("Physical Exam", "Health", Color.RED,
+                    LocalDateTime.of(2026, 5, 3, 10, 0), Privacy.PRIVATE, "user3"),
+            new Event("Baseball Game", "Sports", Color.GREEN,
+                    LocalDateTime.of(2026, 5, 5, 17, 0), Privacy.PUBLIC, "user3"),
+            new Event("Nutrition Check", "Health", Color.RED,
+                    LocalDateTime.of(2026, 5, 7, 9, 0), Privacy.PRIVATE, "user1"),
+            new Event("Essay Draft", "Homework", Color.BLUE,
+                    LocalDateTime.of(2026, 5, 9, 18, 0), Privacy.PUBLIC, "user1"),
+            new Event("Tennis Practice", "Sports", Color.GREEN,
+                    LocalDateTime.of(2026, 5, 11, 16, 0), Privacy.PUBLIC, "user3"),
+            new Event("Mock Exam", "Homework", Color.BLUE,
+                    LocalDateTime.of(2026, 5, 13, 19, 0), Privacy.PUBLIC, "user1"),
+            new Event("Therapy Follow-up", "Health", Color.RED,
+                    LocalDateTime.of(2026, 5, 15, 14, 0), Privacy.PRIVATE, "user2"),
+
+            // JUNE 2026 (8 events)
+            new Event("Summer Reading", "Homework", Color.BLUE,
+                    LocalDateTime.of(2026, 6, 2, 14, 0), Privacy.PUBLIC, "user1"),
+            new Event("Eye Exam", "Health", Color.RED,
+                    LocalDateTime.of(2026, 6, 3, 15, 0), Privacy.PRIVATE, "user2"),
+            new Event("Camp Tryouts", "Sports", Color.GREEN,
+                    LocalDateTime.of(2026, 6, 5, 13, 0), Privacy.PUBLIC, "user3"),
+            new Event("General Checkup", "Health", Color.RED,
+                    LocalDateTime.of(2026, 6, 7, 10, 0), Privacy.PRIVATE, "user1"),
+            new Event("Essay Outline", "Homework", Color.BLUE,
+                    LocalDateTime.of(2026, 6, 9, 17, 30), Privacy.PUBLIC, "user1"),
+            new Event("Running Club", "Sports", Color.GREEN,
+                    LocalDateTime.of(2026, 6, 11, 7, 0), Privacy.PUBLIC, "user3"),
+            new Event("Reading Quiz Prep", "Homework", Color.BLUE,
+                    LocalDateTime.of(2026, 6, 13, 19, 0), Privacy.PUBLIC, "user1"),
+            new Event("Consultation", "Health", Color.RED,
+                    LocalDateTime.of(2026, 6, 15, 9, 0), Privacy.PRIVATE, "user2")
     };
 
     private LocalDate currentMonth = LocalDate.now().withDayOfMonth(1);
@@ -110,15 +143,15 @@ public class CalendarWindow {
         prevBtn.addActionListener(e -> {
             currentMonth = currentMonth.minusMonths(1);
             updateMonthLabel();
-            updateGrid();
-            updateCountdownOverlays();
+            updateGrid();           // Rebuilds ALL base text (no countdown)
+            updateCountdownOverlays(); // Only adds countdown to visible 24h events
         });
 
         nextBtn.addActionListener(e -> {
             currentMonth = currentMonth.plusMonths(1);
             updateMonthLabel();
-            updateGrid();
-            updateCountdownOverlays();
+            updateGrid();           // Rebuilds ALL base text (no countdown)
+            updateCountdownOverlays(); // Only adds countdown to visible 24h events
         });
 
         header.add(prevBtn, BorderLayout.WEST);
@@ -130,8 +163,8 @@ public class CalendarWindow {
         tagFilter.setSelectedItem("All");
         tagFilter.addActionListener(e -> {
             filterTag = (String) tagFilter.getSelectedItem();
-            updateGrid();
-            updateCountdownOverlays();
+            updateGrid();           // Rebuilds ALL base text (no countdown)
+            updateCountdownOverlays(); // Only adds countdown to visible 24h events
         });
         header.add(tagFilter, BorderLayout.SOUTH);
 
@@ -201,7 +234,6 @@ public class CalendarWindow {
 
     private void startCountdownTimer() {
         if (countdownTimer == null) {
-            // Update every minute (60000); change to 1000 for every second.
             countdownTimer = new Timer(60000, e -> updateCountdownOverlays());
             countdownTimer.start();
         } else if (!countdownTimer.isRunning()) {
@@ -212,29 +244,37 @@ public class CalendarWindow {
     private void updateCountdownOverlays() {
         LocalDateTime now = LocalDateTime.now();
 
+        // CRITICAL: First reset ALL buttons to base state (no countdown)
         LocalDate firstDay = currentMonth;
         DayOfWeek dow = firstDay.getDayOfWeek();
         int startIndex = dow.getValue() % 7;
         int lengthOfMonth = firstDay.lengthOfMonth();
 
-        // Reset buttons to base state (no countdown)
         for (int day = 1; day <= lengthOfMonth; day++) {
             int index = startIndex + day - 1;
             if (index >= 0 && index < dayButtons.length) {
                 LocalDate date = currentMonth.withDayOfMonth(day);
                 JButton btn = dayButtons[index];
-                updateButtonBaseText(btn, day, date);
+                updateButtonBaseText(btn, day, date);  // Pure base text, no countdown
             }
         }
 
-        // Add countdowns for events within 24h
+        // Then ONLY add countdown for events that are:
+        // 1. Within 24 hours AND
+        // 2. In current month AND  
+        // 3. Match current tag filter (so they are visible)
         for (Event event : events) {
             Duration timeUntil = Duration.between(now, event.startTime);
             if (timeUntil.isNegative() || timeUntil.toHours() > 24) continue;
 
             LocalDate eventDate = event.getDate();
             if (!eventDate.getMonth().equals(currentMonth.getMonth()) ||
-                    eventDate.getYear() != currentMonth.getYear()) continue;
+                eventDate.getYear() != currentMonth.getYear()) continue;
+
+            // CRITICAL: Only countdown for events that match CURRENT filter
+            if (!isAllTagSelected() && !event.tag.equalsIgnoreCase(filterTag)) {
+                continue;
+            }
 
             int dayOfMonth = eventDate.getDayOfMonth();
             int index = startIndex + dayOfMonth - 1;
@@ -242,37 +282,20 @@ public class CalendarWindow {
 
             JButton btn = dayButtons[index];
             String countdown = formatCountdown(timeUntil);
-
             String currentText = btn.getText();
-            boolean owner = currentUserId.equals(event.ownerId);
-            String displayTitle = getDisplayTitle(event);
-
-            if (event.privacy == Privacy.PRIVATE && !owner) {
-                if (currentText.contains("Private")) {
-                    btn.setText(wrapWithCountdown(currentText, countdown));
-                }
-            } else {
-                if (currentText.contains(displayTitle)) {
-                    btn.setText(wrapWithCountdown(currentText, countdown));
-                }
-            }
+            btn.setText(wrapWithCountdown(currentText, countdown));
         }
     }
 
-    // Cleaner 2nd line, subtle gray text: "⏳ in 2h 5m"
     private String wrapWithCountdown(String baseText, String countdown) {
         String plain = baseText;
         if (plain.startsWith("<html>") && plain.endsWith("</html>")) {
             plain = plain.substring(6, plain.length() - 7);
         }
-
-        return "<html>" +
-                "<div style='text-align:left;'>" + plain + "</div>" +
-                "<div style='font-size:10px; color:#666; margin-top:2px;'>⏳ " + countdown + "</div>" +
-               "</html>";
+        return "<html>" + plain + 
+               "<br><div style='font-size:10px; color:#666; margin-top:2px;'>⏳ " + countdown + "</div></html>";
     }
 
-    // Clean format: "in 2h 5m" or "in 42 min"
     private String formatCountdown(Duration duration) {
         long totalMinutes = duration.toMinutes();
         if (totalMinutes >= 60) {
@@ -285,27 +308,36 @@ public class CalendarWindow {
     }
 
     private void updateButtonBaseText(JButton btn, int day, LocalDate date) {
-        boolean found = false;
+        btn.setBackground(null);
+        btn.setToolTipText(null);
+
+        StringBuilder html = new StringBuilder("<html>" + day);
+        boolean hasEvent = false;
+
         for (Event e : events) {
-            if (e.getDate().equals(date) &&
-                    (isAllTagSelected() || e.tag.equalsIgnoreCase(filterTag))) {
+            if (!e.getDate().equals(date)) continue;
+            if (!isAllTagSelected() && !e.tag.equalsIgnoreCase(filterTag)) continue;
 
-                String displayTitle = getDisplayTitle(e);
-                String timeText = e.startTime.format(timeFmt);
-                boolean owner = currentUserId.equals(e.ownerId);
+            hasEvent = true;
+            btn.setBackground(e.color);
 
-                if (e.privacy == Privacy.PRIVATE && !owner) {
-                    btn.setText(day + "  Private " + timeText);
-                } else {
-                    btn.setText(day + "  " + displayTitle + " " + timeText);
-                }
-                found = true;
-                break;
+            String displayTitle = getDisplayTitle(e);
+            String displayTag = getDisplayTag(e);
+            String timeText = e.startTime.format(timeFmt);
+
+            String oldTip = btn.getToolTipText();
+            String eventText = displayTitle + " [" + displayTag + "] at " + timeText;
+            if (oldTip == null || oldTip.isEmpty()) {
+                btn.setToolTipText(eventText);
+            } else {
+                btn.setToolTipText(oldTip + "; " + eventText);
             }
+
+            html.append("<br>").append(displayTitle).append(" ").append(timeText);
         }
-        if (!found) {
-            btn.setText(String.valueOf(day));
-        }
+
+        html.append("</html>");
+        btn.setText(hasEvent ? html.toString() : String.valueOf(day));
     }
 
     private void updateGrid() {
@@ -324,44 +356,7 @@ public class CalendarWindow {
             int index = startIndex + day - 1;
             LocalDate date = currentMonth.withDayOfMonth(day);
             JButton btn = dayButtons[index];
-
-            boolean timeShown = false;
-
-            for (Event e : events) {
-                if (!e.getDate().equals(date)) continue;
-                if (!isAllTagSelected() && !e.tag.equalsIgnoreCase(filterTag)) continue;
-
-                btn.setBackground(e.color);
-
-                String displayTitle = getDisplayTitle(e);
-                String displayTag = getDisplayTag(e);
-
-                String oldTip = btn.getToolTipText();
-                String eventText = displayTitle + " [" + displayTag + "] at " +
-                        e.startTime.format(timeFmt);
-                if (oldTip == null || oldTip.isEmpty()) {
-                    btn.setToolTipText(eventText);
-                } else {
-                    btn.setToolTipText(oldTip + "; " + eventText);
-                }
-
-                if (!timeShown) {
-                    String base = String.valueOf(day);
-                    String timeText = e.startTime.format(timeFmt);
-
-                    boolean owner = currentUserId.equals(e.ownerId);
-                    if (e.privacy == Privacy.PRIVATE && !owner) {
-                        btn.setText(base + "  Private " + timeText);
-                    } else {
-                        btn.setText(base + "  " + displayTitle + " " + timeText);
-                    }
-                    timeShown = true;
-                }
-            }
-
-            if (!timeShown) {
-                btn.setText(String.valueOf(day));
-            }
+            updateButtonBaseText(btn, day, date);  // Pure base, no countdown
         }
     }
 }
